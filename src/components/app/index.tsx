@@ -1,7 +1,6 @@
 import React from "react";
+import Reader from "components/reader";
 
-const App = () => {
-  return <div>Hello World !!</div>;
-};
+const App = () => <Reader />;
 
 export default App;
