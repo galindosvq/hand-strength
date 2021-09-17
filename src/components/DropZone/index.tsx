@@ -26,24 +26,26 @@ function DropZone() {
 
   useEffect(() => {
     if (!!file) {
-      let weighIndex = undefined;
-      let timeIndex = undefined;
       const format: {
-        time: any;
+        time_ms: number;
       }[] = [];
 
-      const otro = file.map((val) => val.data);
-      // console.log(otro);
-
       file.forEach((val, index) => {
-        weighIndex = val.data.indexOf("time_ms");
+        const timeMsRow = val.data.indexOf("time_ms");
 
-        if (weighIndex !== -1) {
-          for (let ind = index; ind < otro.length; ind++) {
-            console.log(otro[ind]);
+        if (timeMsRow !== -1) {
+          const indexTimeMs = file[index].data.indexOf("time_ms");
+
+          // console.log(timeMsRow, index, indexTimeMs);
+
+          for (let ind = index + 1; ind < file.length; ind++) {
+            // console.log(file[ind].data[indexTimeMs]);
+            format.push({ time_ms: file[ind].data[indexTimeMs] });
           }
         }
       });
+
+      console.log(format);
     }
   }, [file]);
 
