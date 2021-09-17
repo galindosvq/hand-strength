@@ -1,4 +1,4 @@
-import Chart from "components/chart";
+import Chart from "views/chart";
 import React, { memo, useEffect } from "react";
 import { useReader } from "./logic";
 import { Container, Title } from "./styles";
