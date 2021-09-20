@@ -1,20 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
 import { CSVReader, readString } from "react-papaparse";
-
-type fileParse = {
-  data: any[];
-  errors: any[];
-  meta: {
-    aborted: boolean;
-    cursor: number;
-    delimiter: string;
-    linebreak: string;
-    truncated: boolean;
-  };
-};
+import { csv, data, formatter } from "utils/formatter";
 
 function DropZone() {
-  const [file, setFile] = useState<fileParse[] | undefined>(undefined);
+  const [file, setFile] = useState<csv[] | undefined>(undefined);
 
   const handleOnDrop = useCallback((data) => {
     setFile(data);
@@ -26,26 +15,7 @@ function DropZone() {
 
   useEffect(() => {
     if (!!file) {
-      const format: {
-        time_ms: number;
-      }[] = [];
-
-      file.forEach((val, index) => {
-        const timeMsRow = val.data.indexOf("time_ms");
-
-        if (timeMsRow !== -1) {
-          const indexTimeMs = file[index].data.indexOf("time_ms");
-
-          // console.log(timeMsRow, index, indexTimeMs);
-
-          for (let ind = index + 1; ind < file.length; ind++) {
-            // console.log(file[ind].data[indexTimeMs]);
-            format.push({ time_ms: file[ind].data[indexTimeMs] });
-          }
-        }
-      });
-
-      console.log(format);
+      const fileFormat = formatter(file);
     }
   }, [file]);
 
