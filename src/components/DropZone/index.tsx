@@ -1,27 +1,16 @@
-import { useCallback, useEffect, useState } from "react";
-import { CSVReader, readString } from "react-papaparse";
-import { csv, data, formatter } from "utils/formatter";
+import { CSVReader } from "react-papaparse";
+import { useDropZone } from "./logic";
 
 function DropZone() {
-  const [file, setFile] = useState<csv[] | undefined>(undefined);
-
-  const handleOnDrop = useCallback((data) => {
-    setFile(data);
-  }, []);
-
-  const handleOnError = useCallback(() => {}, []);
-
-  const handleOnRemoveFile = useCallback(() => {}, []);
-
-  useEffect(() => {
-    if (!!file) {
-      const fileFormat = formatter(file);
-    }
-  }, [file]);
+  const {
+    file,
+    handleOnDrop,
+    handleOnError,
+    handleOnRemoveFile,
+  } = useDropZone();
 
   return (
     <>
-      <h5>Click and Drag Upload</h5>
       <CSVReader
         onDrop={handleOnDrop}
         onError={handleOnError}

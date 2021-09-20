@@ -47,5 +47,6 @@ export const formatter = (file: csv[]): data[] => {
   for (let index = 0; index < times.length; index++) {
     data.push({ time: times[index], weight: weights[index] });
   }
+
   return data;
 };
