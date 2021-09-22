@@ -31,9 +31,6 @@
     "pinst": "^2.1.6",
     "prettier": "2.2.1"
   },
-  "engines": {
-    "node": "12.18.0"
-  },
   "browserslist": {
     "production": [
       ">0.2%",
