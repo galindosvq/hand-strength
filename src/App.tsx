@@ -1,7 +1,6 @@
-import DropZone from "components/DropZone";
 import React from "react";
-import Reader from "views/reader";
+import Home from "views/Home";
 
-const App = () => <DropZone />;
+const App = () => <Home />;
 
 export default App;
