@@ -1,5 +1,4 @@
-import React, { memo, useCallback, useState } from "react";
-import { ParseResult } from "papaparse";
+import { memo } from "react";
 import {
   LineChart,
   Line,
@@ -17,11 +16,15 @@ import {
 import { data } from "utils/formatter";
 import { Container } from "./styles";
 
-interface Props {
-  data: data[];
-}
+type Props = {
+  data: data[] | undefined;
+};
 
 const Chart = ({ data }: Props) => {
+  if (!data) {
+    return <div />;
+  }
+
   return (
     <Container>
       <ResponsiveContainer height={500} width="90%">
